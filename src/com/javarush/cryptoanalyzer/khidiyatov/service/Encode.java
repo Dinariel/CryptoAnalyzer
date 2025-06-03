@@ -18,33 +18,41 @@ public class Encode implements Function {
         // TODO finish Encode
         try {
             String text = readFile(parameters[1]);
-            StringBuilder stringBuilder = new StringBuilder();
+
             int key = Integer.parseInt(parameters[3]);
-            key %= ALPHABET.length;
-            Arrays.sort(ALPHABET);
 
-            for (int i = 0; i < text.length(); i++) {
-                char c = text.charAt(i);
-                int symbolOfAlphabet = Arrays.binarySearch(ALPHABET, c);
-                if (symbolOfAlphabet < 0) {
-                    stringBuilder.append(c);
-                    continue;
-                }
-                int codedSymbol = symbolOfAlphabet + key;
-                if (codedSymbol >= ALPHABET.length) {
-                    codedSymbol -= ALPHABET.length;
-                }
-                char newChar = ALPHABET[codedSymbol];
-                stringBuilder.append(newChar);
-            }
+            writeFile(encode(text, key), parameters[2]);
 
-            String codedText = stringBuilder.toString();
-            writeFile(codedText, parameters[2]);
 
         } catch (Exception e) {
-            new Result(ERROR, new ApplicationException("Decode operation finish with Exception", e));
+            return new Result(ERROR, new ApplicationException("Decode operation finish with Exception", e));
         }
         return new Result(OK);
     }
+    public static String encode(String text, int key) {
+        StringBuilder stringBuilder = new StringBuilder();
+        key %= ALPHABET.length;
+        Arrays.sort(ALPHABET);
 
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            int symbolOfAlphabet = Arrays.binarySearch(ALPHABET, c);
+            if (symbolOfAlphabet < 0) {
+                stringBuilder.append(c);
+                continue;
+            }
+            int codedSymbol = symbolOfAlphabet + key;
+            if (codedSymbol >= ALPHABET.length) {
+                codedSymbol -= ALPHABET.length;
+            }
+            if (codedSymbol < 0) {
+                codedSymbol = ALPHABET.length + codedSymbol;
+            }
+            char newChar = ALPHABET[codedSymbol];
+            stringBuilder.append(newChar);
+        }
+
+        return stringBuilder.toString();
+
+    }
 }

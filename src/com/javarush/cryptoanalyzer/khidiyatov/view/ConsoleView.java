@@ -30,17 +30,30 @@ public class ConsoleView implements View{
 
     private void encode() {
         parameters[0] = "1";
-        System.out.println("берем текст здесь: src/com/javarush/cryptoanalyzer/khidiyatov/texts/inputText.txt");
-        parameters[1] = "src/com/javarush/cryptoanalyzer/khidiyatov/texts/inputText.txt";
-        System.out.println("зашифрованый текст будет здесь:");
-        parameters[2] = "src/com/javarush/cryptoanalyzer/khidiyatov/texts/outputText.txt";
+
+        System.out.println("берем текст здесь: src/com/javarush/cryptoanalyzer/khidiyatov/texts/original.txt");
+        parameters[1] = "src/com/javarush/cryptoanalyzer/khidiyatov/texts/original.txt";
+
+        System.out.println("зашифрованный текст будет здесь: encode.txt");
+        parameters[2] = "src/com/javarush/cryptoanalyzer/khidiyatov/texts/encode.txt";
+
         System.out.println("Введите ключ шифрования:");
         Scanner scanner = new Scanner(System.in);
         parameters[3] = scanner.nextLine();
     }
 
     private void decode() {
+        parameters[0] = "2";
 
+        System.out.println("берем текст здесь: src/com/javarush/cryptoanalyzer/khidiyatov/texts/encode.txt");
+        parameters[1] = "src/com/javarush/cryptoanalyzer/khidiyatov/texts/encode.txt";
+
+        System.out.println("расшифрованный текст будет здесь: decode.txt");
+        parameters[2] = "src/com/javarush/cryptoanalyzer/khidiyatov/texts/decode.txt";
+
+        System.out.println("Введите ключ:");
+        Scanner scanner = new Scanner(System.in);
+        parameters[3] = scanner.nextLine();
     }
 
     @Override
