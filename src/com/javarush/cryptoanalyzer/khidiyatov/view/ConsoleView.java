@@ -17,12 +17,14 @@ public class ConsoleView implements View{
 
         System.out.println("Укажите, что будем делать:");
         System.out.println( "1 - Шифрование текста по ключу\n" +
-                            "2 - Дешифровка текста по ключу");
+                            "2 - Дешифровка текста по ключу\n" +
+                            "3 - BruteForce");
 
         String choice = scanner.nextLine();
         switch (choice) {
             case "1" -> encode();
             case "2" -> decode();
+            case "3" -> bruteForce();
         }
 
         return parameters;
@@ -54,6 +56,16 @@ public class ConsoleView implements View{
         System.out.println("Введите ключ:");
         Scanner scanner = new Scanner(System.in);
         parameters[3] = scanner.nextLine();
+    }
+
+    private void bruteForce() {
+        parameters[0] = "3";
+
+        System.out.println("берем текст здесь: src/com/javarush/cryptoanalyzer/khidiyatov/texts/encode.txt");
+        parameters[1] = "src/com/javarush/cryptoanalyzer/khidiyatov/texts/encode.txt";
+
+        System.out.println("расшифрованный текст будет здесь: bruteForce.txt");
+        parameters[2] = "src/com/javarush/cryptoanalyzer/khidiyatov/texts/bruteForce.txt";
     }
 
     @Override

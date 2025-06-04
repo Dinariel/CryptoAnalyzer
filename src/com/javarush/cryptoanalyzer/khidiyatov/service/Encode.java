@@ -15,7 +15,6 @@ public class Encode implements Function {
 
     @Override
     public Result execute(String[] parameters) {
-        // TODO finish Encode
         try {
             String text = readFile(parameters[1]);
 
